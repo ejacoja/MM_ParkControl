@@ -7,23 +7,27 @@ public class CarController : MonoBehaviour
     [SerializeField] private LineRenderer _lr;
     [SerializeField] private Transform _carTransform;
 
-    [SerializeField] private float moveTime = 0.5f;
+    public Transform CarTransform { get { return this._carTransform; } }
 
-    List<Vector3> points = new List<Vector3>(100);
+    [SerializeField] private float moveTime = 0.5f;
+    private List<Vector3> points = new List<Vector3>(100);
 
     private bool currentlyMoving = false;
     private Coroutine _coroutine = null;
+
+    public bool hasCrashed = false;
+
     public void AppendPosition(Vector3 newPosition)
     {
-        points.Add(newPosition);
+        this.points.Add(newPosition);
         TryToMoveToNextTarget();
     }
 
     public void ClearPositions()
     {
-        StopCoroutine(_coroutine);
-        points.Clear();
-        currentlyMoving = false;
+        StopCoroutine(this._coroutine);
+        this.points.Clear();
+        this.currentlyMoving = false;
     }
 
     private void Start()
@@ -33,66 +37,76 @@ public class CarController : MonoBehaviour
 
     private void TryToMoveToNextTarget()
     {
-        if (currentlyMoving) return;
+        if (this.currentlyMoving) return;
 
-        if (points.Count >= 1)
+        if (this.points.Count >= 1)
         {
-            var targetPos = points[0];
-            points.RemoveAt(0);
-            _coroutine = StartCoroutine(MovetToTarget(targetPos));
+            var targetPos = this.points[0];
+            this.points.RemoveAt(0);
+            this._coroutine = StartCoroutine(MovetToTarget(targetPos));
         }
     }
 
     private IEnumerator MovetToTarget(Vector3 targetPosition)
     {
-        currentlyMoving = true;
-        var startPos = _carTransform.position;
-        var targetRotation = Quaternion.LookRotation((targetPosition - _carTransform.position).normalized, Vector3.up);
-        var startRotation = _carTransform.transform.rotation;
+        this.currentlyMoving = true;
+        var startPos = this._carTransform.position;
+        var targetRotation = Quaternion.LookRotation((targetPosition - this._carTransform.position).normalized, Vector3.up);
+        var startRotation = this._carTransform.transform.rotation;
 
         float distance = Vector3.Distance(targetPosition, startPos);
-        float currentMoveTime = distance / moveTime; 
+        float currentMoveTime = distance / this.moveTime;
 
         float a = 0f;
-        while(a <= currentMoveTime)
+        while (a <= currentMoveTime)
         {
             a += Time.deltaTime;
-            _carTransform.rotation = Quaternion.Lerp(startRotation, targetRotation, a / currentMoveTime);
-            _carTransform.position = Vector3.Lerp(startPos, targetPosition, a / currentMoveTime);
+            this._carTransform.rotation = Quaternion.Lerp(startRotation, targetRotation, a / currentMoveTime);
+            this._carTransform.position = Vector3.Lerp(startPos, targetPosition, a / currentMoveTime);
             yield return new WaitForEndOfFrame();
         }
 
-        _carTransform.position = targetPosition;
-        _carTransform.rotation = targetRotation;
+        this._carTransform.position = targetPosition;
+        this._carTransform.rotation = targetRotation;
 
 
-        currentlyMoving = false;
+        this.currentlyMoving = false;
 
         TryToMoveToNextTarget();
     }
 
     private void LateUpdate()
     {
+        if (this.hasCrashed)
+        {
+            if (this._coroutine != null)
+            {
+                StopCoroutine(this._coroutine);
+                this._coroutine = null;
+            }
+            return;
+        }
+
         // update line renderer points
 
 
         // position 0 for line renderer is current car position
-        if (_lr.positionCount + 1 == points.Count)
+        if (this._lr.positionCount + 1 == this.points.Count)
         {
-            _lr.SetPosition(0, _carTransform.position);
+            this._lr.SetPosition(0, this._carTransform.position);
         }
         else
         {
             List<Vector3> positions = new List<Vector3>(101);
-            positions.Add(_carTransform.position);
-            positions.AddRange(points);
-            _lr.positionCount = positions.Count;
-            _lr.SetPositions(positions.ToArray());
+            positions.Add(this._carTransform.position);
+            positions.AddRange(this.points);
+            this._lr.positionCount = positions.Count;
+            this._lr.SetPositions(positions.ToArray());
         }
 
-        if (currentlyMoving == false)
+        if (this.currentlyMoving == false)
         {
-            _carTransform.position += _carTransform.forward * moveTime * Time.deltaTime;
+            this._carTransform.position += this._carTransform.forward * this.moveTime * Time.deltaTime;
         }
     }
 }
