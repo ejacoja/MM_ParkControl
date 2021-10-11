@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CheckCollision : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class CheckCollision : MonoBehaviour
 
     private LineRenderer lineRenderer = null;
     public GameObject crashIndicator = null;
+
+    public UnityEvent OnCrash;
 
     private void Start()
     {
@@ -33,14 +36,18 @@ public class CheckCollision : MonoBehaviour
 
         void ActivateCarCrash()
         {
-            this.lineRenderer.SetPositions(new Vector3[0]);
-            this.lineRenderer.enabled = false;
+            OnCrash?.Invoke();
+            carController.hasCrashed = true;
 
-            // inform car controller
-            this.carController.hasCrashed = true;
+            //carController.ClearPositions();
+            //this.lineRenderer.SetPositions(new Vector3[0]);
+            //this.lineRenderer.enabled = false;
 
-            // show new status
-            this.crashIndicator.SetActive(true);
+            //// inform car controller
+            //this.carController.hasCrashed = true;
+
+            //// show new status
+            //this.crashIndicator.SetActive(true);
         }
     }
 }
