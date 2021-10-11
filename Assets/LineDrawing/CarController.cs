@@ -46,16 +46,19 @@ public class CarController : MonoBehaviour
     private IEnumerator MovetToTarget(Vector3 targetPosition)
     {
         currentlyMoving = true;
-
         var startPos = _carTransform.position;
         var targetRotation = Quaternion.LookRotation((targetPosition - _carTransform.position).normalized, Vector3.up);
         var startRotation = _carTransform.transform.rotation;
+
+        float distance = Vector3.Distance(targetPosition, startPos);
+        float currentMoveTime = distance / moveTime; 
+
         float a = 0f;
-        while(a <= moveTime)
+        while(a <= currentMoveTime)
         {
             a += Time.deltaTime;
-            _carTransform.rotation = Quaternion.Lerp(startRotation, targetRotation, a / moveTime);
-            _carTransform.position = Vector3.Lerp(startPos, targetPosition, a / moveTime);
+            _carTransform.rotation = Quaternion.Lerp(startRotation, targetRotation, a / currentMoveTime);
+            _carTransform.position = Vector3.Lerp(startPos, targetPosition, a / currentMoveTime);
             yield return new WaitForEndOfFrame();
         }
 
@@ -85,6 +88,11 @@ public class CarController : MonoBehaviour
             positions.AddRange(points);
             _lr.positionCount = positions.Count;
             _lr.SetPositions(positions.ToArray());
+        }
+
+        if (currentlyMoving == false)
+        {
+            _carTransform.position += _carTransform.forward * moveTime * Time.deltaTime;
         }
     }
 }
