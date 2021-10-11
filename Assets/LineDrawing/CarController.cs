@@ -21,7 +21,7 @@ public class CarController : MonoBehaviour
 
     public void ClearPositions()
     {
-        StopCoroutine(_coroutine);
+        if (_coroutine != null) StopCoroutine(_coroutine);
         points.Clear();
         currentlyMoving = false;
     }
