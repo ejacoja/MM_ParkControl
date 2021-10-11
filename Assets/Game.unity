@@ -246,6 +246,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6009979435102002487, guid: cbaa738eb6633e74cae4c5595c159fb4, type: 3}
+      propertyPath: m_TagString
+      value: Street
+      objectReference: {fileID: 0}
     - target: {fileID: 6009979435102002507, guid: cbaa738eb6633e74cae4c5595c159fb4, type: 3}
       propertyPath: m_RootOrder
       value: 4
