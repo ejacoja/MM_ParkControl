@@ -25,7 +25,7 @@ public class LineDrawing : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) // mouse button pressed during this frame
         {
             RaycastHit hit;
-            if (Physics.Raycast(CurrentMouseRay, out hit, this._carLayer.value))
+            if (Physics.Raycast(CurrentMouseRay, out hit, 100.0f, this._carLayer.value))
             {
                 this._carController = hit.collider.transform.parent.GetComponent<CarController>();
                 this._carController.ClearPositions();
