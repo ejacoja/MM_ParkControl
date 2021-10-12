@@ -513,7 +513,7 @@ MonoBehaviour:
   carColor: {r: 0, g: 0, b: 0, a: 0}
   PowerUpAudio: {fileID: 3296841439748667859}
   ExitAudio: {fileID: 2010897503572308067, guid: e11d6306b0cc4db4eb707748e0f38e98, type: 3}
-  moveTime: 5
+  moveTime: 4.5
   hasCrashed: 0
   isSelected: 0
 --- !u!114 &3127829113415878741

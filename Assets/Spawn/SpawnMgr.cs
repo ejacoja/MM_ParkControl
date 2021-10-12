@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class SpawnMgr : MonoBehaviour
 {
@@ -45,6 +46,16 @@ public class SpawnMgr : MonoBehaviour
         }
     }
 
+    public void GameOver()
+    {
+        CarController[] carControllers = FindObjectsOfType<CarController>();
+        foreach (var car in carControllers)
+        {
+            Destroy(car.gameObject);
+        }
+        this.enabled = false;
+    }
+
     IEnumerator SpawnCarsAtRandom()
     {
         while(true)
@@ -69,7 +80,18 @@ public class SpawnMgr : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             ReturnCarSpawner(spawner);
 
-            yield return new WaitForSeconds(SpawnTime);
+            //wait for no cars or Spawn time up before spawning new car
+            
+            float SpawnCounter = 0f;
+
+            while (SpawnCounter < SpawnTime)
+            {
+                int activeCarCount = FindObjectsOfType<CarController>().Where(car => car.hasCrashed == false).Count();
+                if (activeCarCount <= 0) break;
+
+                yield return new WaitForSeconds(0.5f);
+                SpawnCounter += 0.5f;
+            }
         }
     }
 }

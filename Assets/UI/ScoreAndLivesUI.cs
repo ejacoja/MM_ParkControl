@@ -10,7 +10,7 @@ public class ScoreAndLivesUI : MonoBehaviour
     public static ScoreAndLivesUI Instance { get; private set; }
 
     public Text ScoreText = null;
-    private int currentScore;
+    public int currentScore;
 
     public int PointsPerPowerup = 10;
 
