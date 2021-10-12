@@ -27,6 +27,7 @@ public class PowerUp : MonoBehaviour
     {
         powerUpManager.DeactivatePowerUp(this);
         this.gameObject.SetActive(false);
+        ScoreAndLivesUI.Instance.AddScore();
     }
 
     public void Deactivate()

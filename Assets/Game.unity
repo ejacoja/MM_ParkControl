@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4482469, g: 0.49827302, b: 0.5755833, a: 1}
+  m_IndirectSpecularColor: {r: 0.44824684, g: 0.4982726, b: 0.5755828, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7648,6 +7648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df53df89561e6a4083283a3db6c3d39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfPowerUpsPerCar: 2
 --- !u!4 &2144324983
 Transform:
   m_ObjectHideFlags: 0
@@ -7660,7 +7661,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2146070780 stripped
 MonoBehaviour:
@@ -7684,6 +7685,10 @@ PrefabInstance:
       propertyPath: GameOver.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1580234361}
+    - target: {fileID: 5379304223759807648, guid: b40b9fde74259dc4bb7a03648799e26e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5934072968411777103, guid: b40b9fde74259dc4bb7a03648799e26e, type: 3}
       propertyPath: m_Camera
       value: 
