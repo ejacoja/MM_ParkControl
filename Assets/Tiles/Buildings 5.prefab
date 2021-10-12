@@ -19,6 +19,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &3436227368392278160
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36182354369190217}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9666326, y: 1.0852679, z: 1.0128433}
+  m_Center: {x: 0.030423056, y: 0.32090968, z: 0.00000025241107}
 --- !u!1 &972821748795156482
 GameObject:
   m_ObjectHideFlags: 0
@@ -28,7 +41,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 972821748795156481}
-  - component: {fileID: 2830437407876811761}
   m_Layer: 6
   m_Name: Buildings 5
   m_TagString: Untagged
@@ -55,19 +67,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2830437407876811761
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 972821748795156482}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &972821749022856887
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +149,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &913477219267242200
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509723406779292443}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7766798, y: 0.52219135, z: 0.30664173}
+  m_Center: {x: 0, y: 0.26109567, z: 0.06319119}
+--- !u!65 &601518876110334675
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3130555509380840293}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.769707, y: 0.40239424, z: 0.66660887}
+  m_Center: {x: 0, y: 0.20119712, z: 0.00000029802322}
 --- !u!95 &6281101933257414645
 Animator:
   serializedVersion: 3
@@ -169,6 +194,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &3205792897684282825
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4926145174252903236}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.83145285, y: 1.0852679, z: 0.848778}
+  m_Center: {x: -0.09801565, y: 0.32090968, z: 0.08203576}
 --- !u!1 &6795248409316368718
 GameObject:
   m_ObjectHideFlags: 0
@@ -5131,6 +5169,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3efbccecd02307c4cbb55294a44ac198, type: 3}
+--- !u!1 &1509723406779292443 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1784311713693984, guid: 3efbccecd02307c4cbb55294a44ac198, type: 3}
+  m_PrefabInstance: {fileID: 1510337150924692027}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1505608933230740473 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4843331409320386, guid: 3efbccecd02307c4cbb55294a44ac198, type: 3}
@@ -5209,6 +5252,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fccab435ad41e62438c4b6cab1db8e3a, type: 3}
+--- !u!1 &3130555509380840293 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1006731042829892, guid: fccab435ad41e62438c4b6cab1db8e3a, type: 3}
+  m_PrefabInstance: {fileID: 3130674899441962273}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3126188091726318473 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4529689341134504, guid: fccab435ad41e62438c4b6cab1db8e3a, type: 3}
