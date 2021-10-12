@@ -30,7 +30,8 @@ public class LineDrawing : MonoBehaviour
                 this._carController = hit.collider.transform.parent.GetComponent<CarController>();
                 this._carController.ClearPositions();
                 this._carController.isSelected = true;
-                this._lastPosition = this._carController.CarTransform.position;
+                this._lastPosition = hit.point;
+                this._lastPosition.y = 0.0f;
             }
             else
             {
