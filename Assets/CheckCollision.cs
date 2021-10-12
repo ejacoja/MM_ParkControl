@@ -56,6 +56,7 @@ public class CheckCollision : MonoBehaviour
         {
             OnCrash?.Invoke();
             carController.hasCrashed = true;
+            ScoreAndLivesUI.Instance.LoseOneLife();
 
             this.carController.DeleteRelatedPowerUps();
 

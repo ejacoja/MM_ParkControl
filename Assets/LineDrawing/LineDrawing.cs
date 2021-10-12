@@ -41,7 +41,7 @@ public class LineDrawing : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            this._carController.isSelected = false;
+            if (_carController) this._carController.isSelected = false;
             this._carController = null;
             this._lastPosition = Vector3.zero;
         }

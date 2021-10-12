@@ -13,8 +13,6 @@ public class CarSpawner : MonoBehaviour
         OutArrows.SetActive(false);
         InArrows.SetActive(true);
 
-        InArrows.GetComponent<Animator>().playbackTime = 0;
-
         foreach (MeshRenderer mr in InArrowMeshRenderer)
         {
             mr.material.color = color;
@@ -29,8 +27,6 @@ public class CarSpawner : MonoBehaviour
     {
         InArrows.SetActive(false);
         OutArrows.SetActive(true);
-
-        OutArrows.GetComponent<Animator>().playbackTime = 0;
 
         foreach (MeshRenderer mr in OutArrowMeshRenderer)
         {
