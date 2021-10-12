@@ -28,9 +28,9 @@ public class SpawnMgr : MonoBehaviour
 
             yield return new WaitForSeconds(ArrowWarnTime);
 
+            powerUpManager.SpawnRandomPowerUp(CarColors[curCarIndex]);
             Instantiate<GameObject>(CarPrefabs[curCarIndex], spawner.transform.position, spawner.transform.rotation, null);
             colorIndex++;
-            powerUpManager.SpawnRandomPowerUp();
 
             yield return new WaitForSeconds(0.5f);
             spawner.ShowNone();

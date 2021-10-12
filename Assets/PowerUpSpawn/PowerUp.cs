@@ -5,6 +5,7 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     public PowerUpSpawnMgr powerUpManager;
+    public Light powerUpLight;
 
     // Start is called before the first frame update
     void Start()
@@ -31,8 +32,9 @@ public class PowerUp : MonoBehaviour
         
     }
 
-    public void SpawnPowerUp()
+    public void SpawnPowerUp(Color color)
     {
+        powerUpLight.color = color;
         this.gameObject.SetActive(true);
     }
 }

@@ -27,14 +27,14 @@ public class PowerUpSpawnMgr : MonoBehaviour
         }
     }
 
-    public void SpawnRandomPowerUp()
+    public void SpawnRandomPowerUp(Color carColor)
     {
         Debug.Log(inactivePowerUps.Count);
         int randomIndex = -1;
 
         randomIndex = UnityEngine.Random.Range(0, inactivePowerUps.Count - 1);
 
-        inactivePowerUps[randomIndex].SpawnPowerUp();
+        inactivePowerUps[randomIndex].SpawnPowerUp(carColor);
 
         ActivatePowerUp(randomIndex);
     }
