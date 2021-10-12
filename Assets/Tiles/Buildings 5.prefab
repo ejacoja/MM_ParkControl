@@ -47,8 +47,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 5}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4.6193676, y: 5, z: 3.3358383}
+  m_Center: {x: 0.110648155, y: 0, z: 0.63733864}
 --- !u!1 &972821749022856887
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 972821749022856886}
   - component: {fileID: 972821749022856884}
   - component: {fileID: 972821749022856885}
+  - component: {fileID: 2166898223568953099}
   m_Layer: 6
   m_Name: SM_Tile_Cube_Concrete_01
   m_TagString: Untagged
@@ -131,6 +132,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2166898223568953099
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972821749022856887}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4769306, y: 0.43241468, z: 0.56518364}
+  m_Center: {x: -1.4163084, y: -0.21526538, z: -2.1465921}
 --- !u!1001 &37972845265906341
 PrefabInstance:
   m_ObjectHideFlags: 0
