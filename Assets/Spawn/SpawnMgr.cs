@@ -7,6 +7,7 @@ public class SpawnMgr : MonoBehaviour
     public List<Color> CarColors = new List<Color>();
     public List<CarSpawner> CarSpawnPoints = new List<CarSpawner>();
     public List<GameObject> CarPrefabs;
+    public PowerUpSpawnMgr powerUpManager;
     public float SpawnTime = 5f, ArrowWarnTime = 2f;
 
     private int colorIndex = 0;
@@ -29,6 +30,7 @@ public class SpawnMgr : MonoBehaviour
 
             Instantiate<GameObject>(CarPrefabs[curCarIndex], spawner.transform.position, spawner.transform.rotation, null);
             colorIndex++;
+            powerUpManager.SpawnRandomPowerUp();
 
             yield return new WaitForSeconds(0.5f);
             spawner.ShowNone();

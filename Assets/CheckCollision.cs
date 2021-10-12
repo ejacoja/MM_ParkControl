@@ -8,6 +8,7 @@ public class CheckCollision : MonoBehaviour
     private CarController carController = null;
 
     public string excludeCollisionTag = "Street";
+    public string powerUpTag = "PowerUP";
 
     private LineRenderer lineRenderer = null;
     public GameObject crashIndicator = null;
@@ -30,7 +31,19 @@ public class CheckCollision : MonoBehaviour
             // only if not myself
             if (this.carController.CarTransform.gameObject != collider.gameObject && collider.tag != excludeCollisionTag)
             {
-                ActivateCarCrash();
+                Debug.Log(collider.gameObject.name);
+                Debug.Log(collider.tag);
+                if (collider.tag == powerUpTag)
+                {
+                    Debug.Log("Collide with PowerUp");
+                    PowerUp powerUp = collider.transform.parent.GetComponent<PowerUp>();
+                    powerUp.Collect();
+                }
+                else
+                {
+                    ActivateCarCrash();
+                }
+                
             }
         }
 
