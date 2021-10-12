@@ -13,6 +13,9 @@ public class CarController : MonoBehaviour
     public List<PowerUp> listOfPowerUps = new List<PowerUp>();
     public Color carColor;
 
+    public AudioSource PowerUpAudio;
+    public AudioSource ExitAudio;
+
     public CarSpawner exitSpawner { get; private set; }
 
     public Transform CarTransform { get { return this._carTransform; } }
@@ -100,6 +103,8 @@ public class CarController : MonoBehaviour
 
     internal void CollectPowerUp(PowerUp powerUp)
     {
+        PowerUpAudio.Play();
+
         this.listOfPowerUps.Remove(powerUp);
         hasAllPowerUpsCollected = this.listOfPowerUps.Count <= 0;
         
@@ -114,6 +119,7 @@ public class CarController : MonoBehaviour
 
     internal void ArrivedAtExit(CarSpawner exit)
     {
+        Instantiate(ExitAudio);
         SpawnMgr.Instance.ReturnCarSpawner(exitSpawner);
         ScoreAndLivesUI.Instance.AddScore();
         Destroy(gameObject);
