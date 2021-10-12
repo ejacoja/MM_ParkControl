@@ -17,6 +17,8 @@ public class CarController : MonoBehaviour
 
     public bool hasCrashed = false;
 
+    public bool isSelected = false;
+
     public void AppendPosition(Vector3 newPosition)
     {
         this.points.Add(newPosition);
@@ -104,7 +106,7 @@ public class CarController : MonoBehaviour
             this._lr.SetPositions(positions.ToArray());
         }
 
-        if (this.currentlyMoving == false)
+        if (this.currentlyMoving == false && !isSelected)
         {
             this._carTransform.position += this._carTransform.forward * this.moveTime * Time.deltaTime;
         }

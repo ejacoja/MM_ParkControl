@@ -17,7 +17,7 @@ public class LineDrawing : MonoBehaviour
         DrawLineOnMouseDrag();
     }
 
-    private Ray CurrentMouseRay => camera.ScreenPointToRay(Input.mousePosition);
+    private Ray CurrentMouseRay => this.camera.ScreenPointToRay(Input.mousePosition);
 
 
     private void SelectCar()
@@ -25,11 +25,12 @@ public class LineDrawing : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) // mouse button pressed during this frame
         {
             RaycastHit hit;
-            if (Physics.Raycast(CurrentMouseRay, out hit, this._carLayer.value))
+            if (Physics.Raycast(CurrentMouseRay, out hit, 100.0f, this._carLayer.value))
             {
                 this._carController = hit.collider.transform.parent.GetComponent<CarController>();
                 this._carController.ClearPositions();
-                this._lastPosition = this._carController.transform.position;
+                this._carController.isSelected = true;
+                this._lastPosition = this._carController.CarTransform.position;
             }
             else
             {
@@ -39,6 +40,7 @@ public class LineDrawing : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
+            this._carController.isSelected = false;
             this._carController = null;
             this._lastPosition = Vector3.zero;
         }
@@ -46,7 +48,7 @@ public class LineDrawing : MonoBehaviour
 
     private void DrawLineOnMouseDrag()
     {
-        if (this._carController != null && Input.GetMouseButton(0))
+        if (this._carController != null && Input.GetMouseButton(0) && !this._carController.hasCrashed)
         {
             RaycastHit hit;
             if (Physics.Raycast(CurrentMouseRay, out hit))
@@ -57,6 +59,7 @@ public class LineDrawing : MonoBehaviour
                 {
                     this._carController.AppendPosition(newPosition);
                     this._lastPosition = newPosition;
+                    this._carController.isSelected = false;
                 }
             }
         }

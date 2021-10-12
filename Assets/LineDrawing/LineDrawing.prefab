@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _carLayer:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 256
   _carController: {fileID: 0}
   _minDistance: 1
+  camera: {fileID: 0}
