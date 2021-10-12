@@ -6,6 +6,7 @@ public class PowerUp : MonoBehaviour
 {
     public PowerUpSpawnMgr powerUpManager;
     public Light powerUpLight;
+    //private Material lightMaterial;
 
     // Start is called before the first frame update
     void Start()
@@ -14,6 +15,7 @@ public class PowerUp : MonoBehaviour
         this.powerUpManager = FindObjectOfType<PowerUpSpawnMgr>();
         Debug.Log("Mgr" + powerUpManager);
         powerUpManager.RegisterPowerUp(this);
+        //lightMaterial = this.GetComponent<MeshRenderer>().material;
     }
 
     // Update is called once per frame
