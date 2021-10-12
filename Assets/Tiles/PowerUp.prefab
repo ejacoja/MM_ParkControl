@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4227583864449424971}
   - component: {fileID: 2952698572328613069}
+  - component: {fileID: 2844972963175096350}
   m_Layer: 7
   m_Name: PowerUp
   m_TagString: PowerUP
@@ -29,7 +30,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2241904174995328516}
-  - {fileID: 2843776271348398485}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47,6 +47,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUpManager: {fileID: 0}
   powerUpLight: {fileID: 652955306539946133}
+--- !u!95 &2844972963175096350
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056475697132000207}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7f915f94368222b4f96ab62703e950ae, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!135 &8136093643673973378
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -84,12 +103,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7685723001163183565}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.39, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.49991274, y: 0.50008726, z: 0.49991274, w: 0.50008726}
+  m_LocalPosition: {x: 0, y: 0, z: -0.023796972}
+  m_LocalScale: {x: 0.020000001, y: 0.03901143, z: 0.065539695}
   m_Children: []
-  m_Father: {fileID: 4227583864449424971}
-  m_RootOrder: 1
+  m_Father: {fileID: 2241904174995328516}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &652955306539946133
 Light:
