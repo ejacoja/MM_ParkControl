@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class CarController : MonoBehaviour
 {
     [SerializeField] private LineRenderer _lr;
     [SerializeField] private Transform _carTransform;
+    public List<PowerUp> listOfPowerUps = new List<PowerUp>();
 
     public Transform CarTransform { get { return this._carTransform; } }
 
@@ -18,6 +20,7 @@ public class CarController : MonoBehaviour
     public bool hasCrashed = false;
 
     public bool isSelected = false;
+    private bool hasAllPowerUpsCollected;
 
     public void AppendPosition(Vector3 newPosition)
     {
@@ -77,6 +80,27 @@ public class CarController : MonoBehaviour
         TryToMoveToNextTarget();
     }
 
+    internal void DeleteRelatedPowerUps()
+    {
+        foreach(PowerUp powerUp in listOfPowerUps)
+        {
+            powerUp.Deactivate();
+        }
+    }
+
+    internal void CollectPowerUp(PowerUp powerUp)
+    {
+        this.listOfPowerUps.Remove(powerUp);
+        hasAllPowerUpsCollected = this.listOfPowerUps.Count <= 0;
+        
+        powerUp.Collect();
+
+        if (hasAllPowerUpsCollected)
+        {
+            DestroyCar();
+        }
+    }
+
     private void LateUpdate()
     {
         if (this.hasCrashed)
@@ -110,5 +134,10 @@ public class CarController : MonoBehaviour
         {
             this._carTransform.position += this._carTransform.forward * this.moveTime * Time.deltaTime;
         }
+    }
+
+    public void DestroyCar()
+    {
+        Destroy(this.gameObject);
     }
 }

@@ -5,13 +5,23 @@ using UnityEngine;
 
 public class PowerUpSpawnMgr : MonoBehaviour
 {
+    public int numberOfPowerUpsPerCar = 2;
+
     private List<PowerUp> inactivePowerUps = new List<PowerUp>();
     private List<PowerUp> activePowerUps = new List<PowerUp>();
 
-    public void ActivatePowerUp(int index)
+    public static PowerUpSpawnMgr instance;
+
+    public void Awake()
+    {
+        instance = this;
+    }
+
+    public int ActivatePowerUp(int index)
     {
         activePowerUps.Add(this.inactivePowerUps[index]);
         inactivePowerUps.RemoveAt(index);
+        return activePowerUps.Count - 1;
     }
 
     public void DeactivatePowerUp(PowerUp powerUp)
@@ -27,16 +37,22 @@ public class PowerUpSpawnMgr : MonoBehaviour
         }
     }
 
-    public void SpawnRandomPowerUp(Color carColor)
+    public List<PowerUp> SpawnRandomPowerUp(Color carColor)
     {
         Debug.Log(inactivePowerUps.Count);
-        int randomIndex = -1;
+        List<int> randomIndices = new List<int>();
+        List<PowerUp> carRelatedPowerUps = new List<PowerUp>();
 
-        randomIndex = UnityEngine.Random.Range(0, inactivePowerUps.Count - 1);
+        for (int count = 0; count < numberOfPowerUpsPerCar; count++)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, inactivePowerUps.Count - 1);
+            randomIndices.Add(randomIndex);
+            PowerUp powerUp = inactivePowerUps[randomIndex].SpawnPowerUp(carColor);
+            int newIndex = ActivatePowerUp(randomIndex);
+            carRelatedPowerUps.Add(powerUp);
+        }
 
-        inactivePowerUps[randomIndex].SpawnPowerUp(carColor);
-
-        ActivatePowerUp(randomIndex);
+        return carRelatedPowerUps;
     }
 
     public void RegisterPowerUp(PowerUp powerUp)

@@ -6,7 +6,7 @@ public class PowerUp : MonoBehaviour
 {
     public PowerUpSpawnMgr powerUpManager;
     public Light powerUpLight;
-    //private Material lightMaterial;
+    private Material lightMaterial;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,7 @@ public class PowerUp : MonoBehaviour
         this.powerUpManager = FindObjectOfType<PowerUpSpawnMgr>();
         Debug.Log("Mgr" + powerUpManager);
         powerUpManager.RegisterPowerUp(this);
-        //lightMaterial = this.GetComponent<MeshRenderer>().material;
+        lightMaterial = this.GetComponentInChildren<MeshRenderer>().material;
     }
 
     // Update is called once per frame
@@ -29,14 +29,23 @@ public class PowerUp : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
+    public void Deactivate()
+    {
+        this.gameObject.SetActive(false);
+        powerUpManager.DeactivatePowerUp(this);
+    }
+
     private void OnDestroy()
     {
         
     }
 
-    public void SpawnPowerUp(Color color)
+    public PowerUp SpawnPowerUp(Color color)
     {
         powerUpLight.color = color;
+        lightMaterial.color = color;
+        lightMaterial.SetColor("_EmissionColor", color);
         this.gameObject.SetActive(true);
+        return this;
     }
 }

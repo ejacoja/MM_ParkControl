@@ -37,7 +37,12 @@ public class CheckCollision : MonoBehaviour
                 {
                     Debug.Log("Collide with PowerUp");
                     PowerUp powerUp = collider.transform.parent.GetComponent<PowerUp>();
-                    powerUp.Collect();
+
+                    if(this.carController.listOfPowerUps.Contains(powerUp))
+                    {
+                        this.carController.CollectPowerUp(powerUp);
+                    }
+                    
                 }
                 else
                 {
@@ -51,6 +56,8 @@ public class CheckCollision : MonoBehaviour
         {
             OnCrash?.Invoke();
             carController.hasCrashed = true;
+
+            this.carController.DeleteRelatedPowerUps();
 
             //carController.ClearPositions();
             //this.lineRenderer.SetPositions(new Vector3[0]);
