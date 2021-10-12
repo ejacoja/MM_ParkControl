@@ -255,7 +255,7 @@ MonoBehaviour:
   crashCollider: {fileID: 883499457074287652}
   listOfPowerUps: []
   carColor: {r: 0, g: 0, b: 0, a: 0}
-  moveTime: 5
+  moveTime: 4.51
   hasCrashed: 0
   isSelected: 0
 --- !u!114 &3127829113415878741
