@@ -46,6 +46,16 @@ public class SpawnMgr : MonoBehaviour
         }
     }
 
+    public void GameOver()
+    {
+        CarController[] carControllers = FindObjectsOfType<CarController>();
+        foreach (var car in carControllers)
+        {
+            Destroy(car.gameObject);
+        }
+        this.enabled = false;
+    }
+
     IEnumerator SpawnCarsAtRandom()
     {
         while(true)

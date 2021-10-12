@@ -7682,9 +7682,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3394144579730854435, guid: b40b9fde74259dc4bb7a03648799e26e, type: 3}
+      propertyPath: GameOver.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394144579730854435, guid: b40b9fde74259dc4bb7a03648799e26e, type: 3}
       propertyPath: GameOver.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1580234361}
+      objectReference: {fileID: 1580234362}
+    - target: {fileID: 3394144579730854435, guid: b40b9fde74259dc4bb7a03648799e26e, type: 3}
+      propertyPath: GameOver.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: GameOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394144579730854435, guid: b40b9fde74259dc4bb7a03648799e26e, type: 3}
+      propertyPath: GameOver.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SpawnMgr, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5379304223759807648, guid: b40b9fde74259dc4bb7a03648799e26e, type: 3}
       propertyPath: m_IsActive
       value: 0
