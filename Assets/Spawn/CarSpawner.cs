@@ -6,14 +6,23 @@ public class CarSpawner : MonoBehaviour
 {
     public GameObject InArrows, OutArrows;
 
+    public List<MeshRenderer> InArrowMeshRenderer, OutArrowMeshRenderer;
+    public List<Light> InArrowLights, OutArrowLights;
     public void ShowIn(Color color)
     {
         OutArrows.SetActive(false);
         InArrows.SetActive(true);
 
-        foreach (MeshRenderer mr in InArrows.GetComponentsInChildren<MeshRenderer>())
+        InArrows.GetComponent<Animator>().playbackTime = 0;
+
+        foreach (MeshRenderer mr in InArrowMeshRenderer)
         {
             mr.material.color = color;
+        }
+
+        foreach (Light l in InArrowLights)
+        {
+            l.color = color;
         }
     }
     public void ShowOut(Color color)
@@ -21,9 +30,16 @@ public class CarSpawner : MonoBehaviour
         InArrows.SetActive(false);
         OutArrows.SetActive(true);
 
-        foreach (MeshRenderer mr in OutArrows.GetComponentsInChildren<MeshRenderer>())
+        OutArrows.GetComponent<Animator>().playbackTime = 0;
+
+        foreach (MeshRenderer mr in OutArrowMeshRenderer)
         {
             mr.material.color = color;
+        }
+
+        foreach (Light l in OutArrowLights)
+        {
+            l.color = color;
         }
     }
 
