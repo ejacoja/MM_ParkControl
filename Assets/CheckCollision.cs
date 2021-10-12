@@ -9,6 +9,8 @@ public class CheckCollision : MonoBehaviour
 
     public string excludeCollisionTag = "Street";
     public string powerUpTag = "PowerUP";
+    
+    public string exitTag = "Exit";
 
     private LineRenderer lineRenderer = null;
     public GameObject crashIndicator = null;
@@ -25,11 +27,11 @@ public class CheckCollision : MonoBehaviour
     {
         if (this.carController.hasCrashed) return;
 
-        Collider[] colliders = Physics.OverlapSphere(this.carController.CarTransform.position, this.collisionRadius);
+        Collider[] colliders = Physics.OverlapSphere(this.carController.CarTransform.position, this.collisionRadius, collisionLayer.value);
         foreach (var collider in colliders)
         {
             // only if not myself
-            if (this.carController.CarTransform.gameObject != collider.gameObject && collider.tag != excludeCollisionTag)
+            if (this.carController.crashCollider != collider && collider.tag != excludeCollisionTag)
             {
                 Debug.Log(collider.gameObject.name);
                 Debug.Log(collider.tag);
@@ -42,7 +44,14 @@ public class CheckCollision : MonoBehaviour
                     {
                         this.carController.CollectPowerUp(powerUp);
                     }
-                    
+                }
+                else if (collider.tag == exitTag)
+                {
+                    CarSpawner exitSpawner = collider.GetComponent<CarSpawner>();
+                    if (carController?.exitSpawner == exitSpawner)
+                    {
+                        carController.ArrivedAtExit(exitSpawner);
+                    }
                 }
                 else
                 {
@@ -55,10 +64,8 @@ public class CheckCollision : MonoBehaviour
         void ActivateCarCrash()
         {
             OnCrash?.Invoke();
-            carController.hasCrashed = true;
+            carController.Crash();
             ScoreAndLivesUI.Instance.LoseOneLife();
-
-            this.carController.DeleteRelatedPowerUps();
 
             //carController.ClearPositions();
             //this.lineRenderer.SetPositions(new Vector3[0]);

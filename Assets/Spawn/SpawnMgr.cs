@@ -4,17 +4,45 @@ using UnityEngine;
 
 public class SpawnMgr : MonoBehaviour
 {
+    public static SpawnMgr Instance { get; private set; }
+
     public List<Color> CarColors = new List<Color>();
     public List<CarSpawner> CarSpawnPoints = new List<CarSpawner>();
+    private List<CarSpawner> CarSpawnPointsInUse = new List<CarSpawner>();
     public List<GameObject> CarPrefabs;
     public PowerUpSpawnMgr powerUpManager;
     public float SpawnTime = 5f, ArrowWarnTime = 2f;
 
     private int colorIndex = 0;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         StartCoroutine(SpawnCarsAtRandom());
+    }
+
+    public CarSpawner GetRandomCarSpawner()
+    {
+        var index = Random.Range(0, CarSpawnPoints.Count);
+        CarSpawner spawner = CarSpawnPoints[index];
+
+        CarSpawnPointsInUse.Add(spawner);
+        CarSpawnPoints.RemoveAt(index);
+
+        return spawner;
+    }
+
+    public void ReturnCarSpawner(CarSpawner spawner)
+    {
+        if (CarSpawnPointsInUse.Remove(spawner))
+        {
+            CarSpawnPoints.Add(spawner);
+            spawner.ShowNone();
+        }
     }
 
     IEnumerator SpawnCarsAtRandom()
@@ -23,18 +51,23 @@ public class SpawnMgr : MonoBehaviour
         {
             int curCarIndex = colorIndex % CarColors.Count;
 
-            CarSpawner spawner = CarSpawnPoints[Random.Range(0, CarSpawnPoints.Count)];
-            spawner.ShowOut(CarColors[curCarIndex]);
+            CarSpawner spawner = GetRandomCarSpawner();
+            Color color = CarColors[curCarIndex];
+            spawner.ShowOut(color);
 
             yield return new WaitForSeconds(ArrowWarnTime);
 
-            List<PowerUp> powerUpList = powerUpManager.SpawnRandomPowerUp(CarColors[curCarIndex]);
             GameObject carInstance = Instantiate<GameObject>(CarPrefabs[curCarIndex], spawner.transform.position, spawner.transform.rotation, null);
-            carInstance.GetComponent<CarController>().listOfPowerUps = powerUpList;
+            var carController = carInstance.GetComponent<CarController>();
+
+            List<PowerUp> powerUpList = powerUpManager.SpawnRandomPowerUp(color);
+            carController.listOfPowerUps = powerUpList;
+            carController.carColor = color;
+
             colorIndex++;
 
             yield return new WaitForSeconds(0.5f);
-            spawner.ShowNone();
+            ReturnCarSpawner(spawner);
 
             yield return new WaitForSeconds(SpawnTime);
         }

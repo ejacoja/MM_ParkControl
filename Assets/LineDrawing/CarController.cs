@@ -7,7 +7,13 @@ public class CarController : MonoBehaviour
 {
     [SerializeField] private LineRenderer _lr;
     [SerializeField] private Transform _carTransform;
+
+    public Collider crashCollider;
+
     public List<PowerUp> listOfPowerUps = new List<PowerUp>();
+    public Color carColor;
+
+    public CarSpawner exitSpawner { get; private set; }
 
     public Transform CarTransform { get { return this._carTransform; } }
 
@@ -80,12 +86,16 @@ public class CarController : MonoBehaviour
         TryToMoveToNextTarget();
     }
 
-    internal void DeleteRelatedPowerUps()
+    internal void Crash()
     {
         foreach(PowerUp powerUp in listOfPowerUps)
         {
             powerUp.Deactivate();
         }
+
+        if (exitSpawner) SpawnMgr.Instance.ReturnCarSpawner(exitSpawner);
+
+        hasCrashed = true;
     }
 
     internal void CollectPowerUp(PowerUp powerUp)
@@ -97,8 +107,16 @@ public class CarController : MonoBehaviour
 
         if (hasAllPowerUpsCollected)
         {
-            DestroyCar();
+            exitSpawner = SpawnMgr.Instance.GetRandomCarSpawner();
+            exitSpawner.ShowIn(carColor);
         }
+    }
+
+    internal void ArrivedAtExit(CarSpawner exit)
+    {
+        SpawnMgr.Instance.ReturnCarSpawner(exitSpawner);
+        ScoreAndLivesUI.Instance.AddScore();
+        Destroy(gameObject);
     }
 
     private void LateUpdate()
@@ -134,10 +152,5 @@ public class CarController : MonoBehaviour
         {
             this._carTransform.position += this._carTransform.forward * this.moveTime * Time.deltaTime;
         }
-    }
-
-    public void DestroyCar()
-    {
-        Destroy(this.gameObject);
     }
 }

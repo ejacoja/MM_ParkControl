@@ -7648,7 +7648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df53df89561e6a4083283a3db6c3d39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfPowerUpsPerCar: 2
+  numberOfPowerUpsPerCar: 1
 --- !u!4 &2144324983
 Transform:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Street
   - PowerUP
+  - Exit
   layers:
   - Default
   - TransparentFX

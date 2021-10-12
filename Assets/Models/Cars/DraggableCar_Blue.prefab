@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2198449851699841458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2911664540519536889}
+  - component: {fileID: 883499457074287652}
+  m_Layer: 0
+  m_Name: CrashCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2911664540519536889
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2198449851699841458}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_Children: []
+  m_Father: {fileID: 8727188150782193705}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &883499457074287652
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2198449851699841458}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9838753, y: 1.0806184, z: 2.8622856}
+  m_Center: {x: -0.008062363, y: 0.6046381, z: -0.004030943}
 --- !u!1 &8727188149539824718
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,8 +252,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lr: {fileID: 8727188149539824719}
   _carTransform: {fileID: 8727188150782193705}
+  crashCollider: {fileID: 883499457074287652}
+  listOfPowerUps: []
+  carColor: {r: 0, g: 0, b: 0, a: 0}
   moveTime: 5
   hasCrashed: 0
+  isSelected: 0
 --- !u!114 &3127829113415878741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,8 +273,10 @@ MonoBehaviour:
   collisionRadius: 0.7
   collisionLayer:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 193
   excludeCollisionTag: Street
+  powerUpTag: PowerUP
+  exitTag: Exit
   crashIndicator: {fileID: 8101696811743640591}
   OnCrash:
     m_PersistentCalls:
@@ -290,7 +340,7 @@ GameObject:
   - component: {fileID: 8727188150782193705}
   - component: {fileID: 3314158421075172937}
   m_Layer: 8
-  m_Name: Collider
+  m_Name: SelectionCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -308,6 +358,7 @@ Transform:
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 8727188150418740380}
+  - {fileID: 2911664540519536889}
   m_Father: {fileID: 8727188150442250612}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

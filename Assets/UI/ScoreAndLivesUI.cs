@@ -21,7 +21,6 @@ public class ScoreAndLivesUI : MonoBehaviour
 
     public void Restart()
     {
-        Debug.Log("RESTART CLICKED");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
 
