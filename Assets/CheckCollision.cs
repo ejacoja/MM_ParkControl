@@ -38,7 +38,8 @@ public class CheckCollision : MonoBehaviour
         {
             OnCrash?.Invoke();
             carController.hasCrashed = true;
-
+            ScoreAndLivesUI.Instance.LoseOneLife();
+            
             //carController.ClearPositions();
             //this.lineRenderer.SetPositions(new Vector3[0]);
             //this.lineRenderer.enabled = false;
